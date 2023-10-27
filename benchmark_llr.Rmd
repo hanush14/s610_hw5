@@ -1,19 +1,38 @@
-
 ```{r}
 
 library(microbenchmark)
-
+source("C:\Users\hanus\Desktop\PS05\s610_ps5\llr_functions.Rmd")
 x <- french_fries$potato
 y <- french_fries$buttery
 z <- z
 omega <- 32
 
 benchmark_result <- microbenchmark(
-  llr_results = llr(x, y, z, omega),
-  times = 10  # Number of times to run the function
+  llr_results <- llr(x, y, z, omega),
+  times <- 100
 )
 
-cat("Benchmark results for llr function:\n")
+cat("Minimum execution time of llr: ", min(benchmark_result$time/1000000), "milliseconds\n")
+cat("Mean execution time of llr: ", mean(benchmark_result$time/1000000), "milliseconds\n")
 print(benchmark_result)
+```
 
+
+```{r}
+
+library(microbenchmark)
+source("C:\Users\hanus\Desktop\PS05\s610_ps5\llr.Rmd")
+x <- french_fries$potato
+y <- french_fries$buttery
+z <- z
+omega <- 32
+
+benchmark_result <- microbenchmark(
+  llr_results <- llr(x, y, z, omega),
+  times <- 100
+)
+
+cat("Minimum execution time of llr: ", min(benchmark_result$time/1000000), "milliseconds\n")
+cat("Mean execution time of llr: ", mean(benchmark_result$time/1000000), "milliseconds\n")
+print(benchmark_result)
 ```
