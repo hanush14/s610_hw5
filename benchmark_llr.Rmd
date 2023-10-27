@@ -1,9 +1,7 @@
 
 ```{r}
-library(microbenchmark)
-```
 
-```{r}
+library(microbenchmark)
 
 x <- french_fries$potato
 y <- french_fries$buttery
@@ -12,9 +10,10 @@ omega <- 32
 
 benchmark_result <- microbenchmark(
   llr_results = llr(x, y, z, omega),
-  times = 100  # Number of times to run the function
+  times = 10  # Number of times to run the function
 )
 
 cat("Benchmark results for llr function:\n")
 print(benchmark_result)
+
 ```
