@@ -1,4 +1,5 @@
 ```{r}
+
 library(reshape2)
 data(french_fries)
  french_fries = french_fries[complete.cases(french_fries),]
