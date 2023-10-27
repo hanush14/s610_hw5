@@ -1,0 +1,13 @@
+```{r}
+library(reshape2)
+data(french_fries)
+ french_fries = french_fries[complete.cases(french_fries),]
+ z = seq(0, 15, length.out = 100)
+ fits_1 = llr(z = z, x = french_fries$potato, y = french_fries$buttery, omega = 2)
+ fits_2 = llr(z = z, x = french_fries$potato, y = french_fries$buttery, omega = 8)
+ fits_3 = llr(z = z, x = french_fries$potato, y = french_fries$buttery, omega = 32)
+ plot(z, fits_1)
+ plot(z, fits_2)
+ plot(z, fits_3)
+
+```

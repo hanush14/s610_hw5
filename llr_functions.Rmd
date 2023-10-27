@@ -1,0 +1,33 @@
+
+
+```{r}
+make_weight_matrix <- function(z, x, omega) {
+  n <- length(x)
+  Wz <- matrix(0, n, n)
+  for (i in 1:n) {
+    r <- abs(x[i] - z) / omega
+    Wz[i, i] <- ifelse(r < 1, (1 - r^3)^3, 0)
+  }
+  return(Wz)
+}
+
+make_predictor_matrix <- function(x) {
+  n <- length(x)
+  X <- cbind(rep(1, n), x)
+  return(X)
+}
+compute_f_hat <- function(z, x, y, omega) {
+  Wz <- make_weight_matrix(z, x, omega)
+  X <- make_predictor_matrix(x)
+  f_hat <- as.numeric(c(1, z) %*% solve(t(X) %*% Wz %*% X) %*% t(X) %*% Wz %*% y)
+  return(f_hat)
+}
+
+llr <- function(x, y, z, omega) {
+  fits <- sapply(z, compute_f_hat, x, y, omega)
+  return(fits)
+}
+
+
+```
+
